@@ -1,10 +1,11 @@
 import '@/styles//Header.module.css'
+import Logo from './Logo'
 
 const Header = () => {
   return (
     <header className="header">
       <div className="container">
-        Logo here
+        <Logo />
       </div>
     </header>
   )
