@@ -1,3 +1,5 @@
+import React from 'react'
+import styles from '@/styles/Grid.module.scss'
 
 // Column component
 
@@ -9,7 +11,8 @@ interface ColProps {
   md?: ColSize,
   lg?: ColSize,
   xl?: ColSize,
-  order: number
+  children?: any
+  style?: React.CSSProperties
 };
 
 const Col = (props: any) => {
@@ -19,15 +22,18 @@ const Col = (props: any) => {
     md,
     lg,
     xl,
-    order,
     children
   } = props;
 
-  return (
-    <div className="col">
-      { children }
-    </div>
-  );
+
+  const classes = `col` +
+                  (xs ? ` col--xs-${ xs }` : "") +
+                  (sm ? ` col--sm-${ sm }` : "") +
+                  (md ? ` col--md-${ md }` : "") +
+                  (lg ? ` col--lg-${ lg }` : "") +
+                  (xl ? ` col--xl-${ xl }` : "");
+
+  return (<div className={ classes } style={ props.style }>{ children }</div>);
 };
 
 // Grid component
@@ -51,19 +57,28 @@ interface GridProps {
   alignItems?: GridItemAlignment,
   justifyItems?: GridItemJustification,
   expanded?: boolean,
+  children?: React.ReactElement<ColProps>[] | React.ReactElement<ColProps>,
+  style?: React.CSSProperties,
 };
 
-const Grid = (props: any) => {
+const Grid = (props: GridProps) => {
 
   const {
     alignItems,
     justifyItems,
     expanded,
-    children
+    children,
+    style,
   } = props;
 
+  const classes = "grid" +
+                  (expanded ? " grid--expanded" : "") +
+                  (alignItems === "center" ? " grid--align-center" : "") +
+                  (justifyItems === "center" ? " grid--center" : "") +
+                  (justifyItems === "space-between" ? " grid--space-between" : "");
+
   return (
-    <div>{ children }</div>
+    <div className={ classes } style={ props.style }>{ children }</div>
   );
 };
 

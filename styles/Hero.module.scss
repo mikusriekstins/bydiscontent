@@ -1,0 +1,7 @@
+@import 'styles/mixins';
+
+.hero {
+  min-height: calc(100vh - rem(64));
+  background: #dddddd;
+  color: var(--background-color);
+}

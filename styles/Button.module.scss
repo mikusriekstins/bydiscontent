@@ -1,0 +1,10 @@
+@import 'styles/mixins';
+
+.button {
+  border-radius: var(--border-radius);
+  display: inline-block;
+  padding: rem(10) rem(24);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: rem(24);
+}
